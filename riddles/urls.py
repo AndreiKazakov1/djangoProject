@@ -73,4 +73,5 @@ urlpatterns = [
     # для API
     re_path(r'^', include(api.urls)),
 
+
 ]
