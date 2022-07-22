@@ -1,6 +1,32 @@
-from django.urls import path, re_path
 
+
+# старые import
+from django.urls import path, re_path
 from . import views
+# новые import для API
+from django.conf.urls import include
+from riddles.api import RiddleResource, OptionResource
+from tastypie.api import Api
+
+# api_name будет указываться в URLах
+# перед resource_name из api.py
+api = Api(api_name='api')
+api.register(RiddleResource())
+api.register(OptionResource())
+
+# старое
+app_name = 'riddles'
+
+
+
+# api_name будет указываться в URLах
+# перед resource_name из api.py
+api = Api(api_name='api')
+api.register(RiddleResource())
+api.register(OptionResource())
+
+# старое
+app_name = 'riddles'
 
 
 app_name = 'riddles'
@@ -41,5 +67,10 @@ urlpatterns = [
     re_path(r'^subscribe/$', views.SubscribeView.as_view()),
     re_path(r'^subscribe/$', views.SubscribeView.as_view()),
     re_path(r'^unsubscribe/$', views.unsubscribe, name='unsubscribe'),
+    re_path(r'^unsubscribe/$',
+            views.unsubscribe,
+            name='unsubscribe'),
+    # для API
+    re_path(r'^', include(api.urls)),
 
 ]
