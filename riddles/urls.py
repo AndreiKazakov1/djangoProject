@@ -2,6 +2,7 @@ from django.urls import path, re_path
 
 from . import views
 
+
 app_name = 'riddles'
 urlpatterns = [
     path(r'', views.index, name='index'),
@@ -25,6 +26,20 @@ urlpatterns = [
     re_path(r'^([0-9]+)/get_mark/$',
         views.get_mark,
     name='get_mark'),
-
+    re_path(r'^([0-9]+)/get_mark/$',
+        views.get_mark,
+        name='get_mark'),
+    re_path(r'^admin/$', views.admin, name='admin'),
+    re_path(r'^admin/$', views.admin, name='admin'),
+    re_path(r'^admin/$', views.admin, name='admin'),
+    re_path(r'^post_riddle/$',
+            views.post_riddle,
+            name='post_riddle'),
+    re_path(r'^post_riddle/$',
+            views.post_riddle,
+            name='post_riddle'),
+    re_path(r'^subscribe/$', views.SubscribeView.as_view()),
+    re_path(r'^subscribe/$', views.SubscribeView.as_view()),
+    re_path(r'^unsubscribe/$', views.unsubscribe, name='unsubscribe'),
 
 ]
